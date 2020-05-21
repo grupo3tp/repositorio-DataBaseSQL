@@ -9,7 +9,9 @@ se requiere: {
  SQL Server Management Studio
 };
 
-instalaciones para su uso
+realice la descarga de los archivos en una carpeta de preferencia con la que luego vaya a iniciar en VSCode
+
+instalaciones para su uso en VSCode
 
 en la terminal de VSCode instale el paquete express, body-parser,
 para instalar esos paquetes use el siguiente código:
@@ -17,11 +19,11 @@ para instalar esos paquetes use el siguiente código:
 npm install express
 npm install body-parser
 
-tambien requerimos un paquete para el controlador del servidor SQL para el Nodo js:
+tambien requerimos un paquete para los controladores del servidor SQL para Nodejs:
 
 npm install tedious
 
-y los CORS para tener los permisos de acceso
+y los CORS para tener los permisos de acceso:
 
 npm install cors --save
 
