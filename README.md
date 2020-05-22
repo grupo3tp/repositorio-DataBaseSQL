@@ -27,6 +27,6 @@ y los CORS para tener los permisos de acceso:
 
 npm install cors --save
 
-
+ejecute la aplicacion con node app.js
 
 
