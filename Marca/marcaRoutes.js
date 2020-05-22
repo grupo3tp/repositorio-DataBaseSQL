@@ -1,8 +1,8 @@
-const articuloRepository = require("./marcasRepository");
+const marcasRepository = require("./marcasRepository");
 const dbContext = require("../../prueba_nodejs_con_sql/database/dbContext");
 
 module.exports = function (router) {
-    const articulosRepository = articuloRepository(dbContext);
+    const marcaRepository = marcasRepository(dbContext);
     
-    router.route('/marca').get(articulosRepository.getArticulos);
+    router.route('/marca').get(marcaRepository.getArticulos);
 }
