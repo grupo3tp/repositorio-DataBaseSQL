@@ -2,8 +2,8 @@ var response = require("../../prueba_nodejs_con_sql/shared/response");
 
 var TYPES = require('tedious').TYPES;
 
-function artulosRepository(dbContext) {
-    function getArticulos(req, res) {
+function marcaRepository(dbContext) {
+    function getMarca(req, res) {
         var params = [];
 
         dbContext.getQuery("select * from Marca", params, false, function(error, data) {
@@ -12,7 +12,7 @@ function artulosRepository(dbContext) {
         });
     }
 
-    return {getArticulos};
+    return {getMarca};
 }
 
-module.exports = artulosRepository;
+module.exports = marcaRepository;
