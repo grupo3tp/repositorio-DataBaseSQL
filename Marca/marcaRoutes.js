@@ -1,5 +1,5 @@
 const _marcaRepository = require("./marcasRepository");
-const dbContext = require("../../prueba_nodejs_con_sql/database/dbContext");
+const dbContext = require("../database/dbContext");
 
 module.exports = function (router) {
     const marcaRepository = _marcaRepository(dbContext);

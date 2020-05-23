@@ -1,5 +1,5 @@
 const articuloRepository = require("./articulosRepository");
-const dbContext = require("../../prueba_nodejs_con_sql/database/dbContext");
+const dbContext = require("../database/dbContext");
 
 module.exports = function (router) {
     const articulosRepository = articuloRepository(dbContext);

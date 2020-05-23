@@ -1,4 +1,4 @@
-var response = require("../../prueba_nodejs_con_sql/shared/response");
+var response = require("../shared/response");
 
 var TYPES = require('tedious').TYPES;
 
