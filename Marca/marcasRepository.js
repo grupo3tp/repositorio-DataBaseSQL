@@ -2,17 +2,19 @@ var response = require("../../prueba_nodejs_con_sql/shared/response");
 
 var TYPES = require('tedious').TYPES;
 
-function marcaRepository(dbContext) {
+ function marcaRepository(dbContext) {
+
     function getMarca(req, res) {
-        var params = [];
+         var params = [];
 
-        dbContext.getQuery("select * from Marca", params, false, function(error, data) {
-
-            return res.json(response(data, error));
-        });
+         dbContext.getQuery("select * from Marca", params, false, function(error, data) {
+             return res.json(response(data, error));
+         });
     }
 
-    return {getMarca};
-}
+
+     return {getMarca};
+ }
 
 module.exports = marcaRepository;
+
