@@ -3,16 +3,16 @@ const dbContext = require("../database/dbContext");
 
 module.exports = function (router) {
     const marcaRepository = _marcaRepository(dbContext);
-    //const marcasRepository= findMarcaRepository(dbContext)
-    
-     router.route('/marca').get(marcaRepository.getMarca);
+    router.route('/marca')
+    .get(marcaRepository.getAll)
+    .post(marcaRepository.post);
 
-     //router.route('/marca/:id_Marca').get(marcasRepository.findMarca);
-     
-   
-    // router.route('/marca').get(marcaRepository.getAll);
+router.use('/marca/:marcaId', marcaRepository.intercept);
 
-    // router.route('/marca/:id_Marca').get(marcaRepository.get)
+router.route('/marca/:marcaId')
+    .get(marcaRepository.get)
+    .put(marcaRepository.put)
+    .delete(marcaRepository.delete);
 
 }
 
