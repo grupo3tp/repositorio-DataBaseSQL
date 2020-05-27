@@ -75,22 +75,22 @@ function queryGetExecute(qry, params, isMultiSet, callback) {
     connection.execSql(request);
 }
 
-function queryExecute(qry, params, isMultiSet, callback) {
-    var data = [];
-    var dataset = [];
-    var resultset = 0;
+// function queryExecute(qry, params, isMultiSet, callback) {
+//     var data = [];
+//     var dataset = [];
+//     var resultset = 0;
 
-    request = new Request(qry, function (err, rowCount) {
-        utility.sendDbResponse(err, rowCount, dataset, callback);
-    });
+//     request = new Request(qry, function (err, rowCount) {
+//         utility.sendDbResponse(err, rowCount, dataset, callback);
+//     });
 
-    params.forEach(param => {
-        request.addParameter(param.name, param.type, param.val);
-    });
+//     params.forEach(param => {
+//         request.addParameter(param.name, param.type, param.val);
+//     });
 
 
-    connection.execSql(request);
-}
+//     connection.execSql(request);
+// }
 
 module.exports = {
     get: spGetExecute,
