@@ -4,14 +4,14 @@ var TYPES = require('tedious').TYPES;
 
  function marcaRepository(dbContext) {
 
-    function getEmployees(req, res) {
+    function getA(req, res) {
         var parameters = [];
     
         dbContext.getQuery("select * from Marca", parameters, false, function (error, data){
                     return res.json(response(data, error));
                 });
     }
-    function getEmployee(req, res, next) {
+    function get(req, res, next) {
            if (req.params.marcaId) {
                 var parameters = [];
                     parameters.push({ name: 'id_Marca', type: TYPES.Int, val: req.params.marcaId });
@@ -26,7 +26,7 @@ var TYPES = require('tedious').TYPES;
                 });
             } 
         } 
-    function postEmployees(req, res) {
+    function post(req, res) {
     var parameters = [];
             parameters.push({ name: 'Detalle', type: TYPES.VarChar, val: req.body.Detalle });
           
@@ -36,7 +36,7 @@ var TYPES = require('tedious').TYPES;
             });
         }
     
-        function deleteEmployee(req, res) {
+        function _delete(req, res) {
     
                      var parameters = [];
             
@@ -56,7 +56,7 @@ var TYPES = require('tedious').TYPES;
                      }
                  }
     
-        function putEmployee(req, res) {
+        function put(req, res) {
     
              var parameters = [];
     
@@ -85,7 +85,7 @@ var TYPES = require('tedious').TYPES;
              });
          }
     
-     function findEmployee(req, res, next) {
+     function find(req, res, next) {
     
         if (req.params.marcaId) {
             var parameters = [];
@@ -106,12 +106,12 @@ var TYPES = require('tedious').TYPES;
     
     
     return {
-            getAll: getEmployees,
-            get: getEmployee,
-            post: postEmployees,
-            delete: deleteEmployee,
-            intercept: findEmployee, 
-            put: putEmployee,
+            getAll: getA,
+            get: get,
+            post: post,
+            delete: _delete,
+            intercept: find, 
+            put: put,
         }
     }
 
