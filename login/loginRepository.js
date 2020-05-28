@@ -1,7 +1,9 @@
 var response = require("../shared/response");
 const jwt = require('jsonwebtoken');
-
+const JWT_Secret = "987654"
 var TYPES = require('tedious').TYPES;
+var testUser = { usuario: 'p', password: '1'};
+
 
  function loginRepository(dbContext) {
 
@@ -9,31 +11,31 @@ var TYPES = require('tedious').TYPES;
 
         if (req.body) {
             var user = req.body;
-            console.log(user)
 
             var parameters = [];
-    
+           
             dbContext.getQuery("select * from Usuarios", parameters, false, function (error, data){
-                       
-                    });
+                  
+              });
          
-            if (parameters.dni===req.body.dni && parameters.pass === req.body.pass) {
+            if (req.body.Usuario===testUser.usuario && req.body.Pass === testUser.password ) {
               var token = jwt.sign(user, JWT_Secret);
               res.status(200).send({
                 signed_user: user,
-                token: token
+                token:token 
+
               });
             } else {
               res.status(403).send({
-                errorMessage: 'Authorisation required!'
+                errorMessage: 'requiere autorizacion!'
               });
             }
-          } else {
-            res.status(403).send({
-              errorMessage: 'Please provide email and password'
-            });
-          }
-    }
+        } else { 
+        res.status(403).send({
+          errorMessage: 'Por favor ingrese un Usuario y Contraseña'
+        });
+        }
+     }
 
     return {getA}
 }

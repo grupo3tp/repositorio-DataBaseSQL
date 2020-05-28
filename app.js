@@ -29,3 +29,4 @@ var router = require('./routes')();
 
  
 app.use('/api', router);
+
