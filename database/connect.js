@@ -20,7 +20,7 @@ connection.on('connect', function (err) {
     if (err) {
         console.log(err);
     } else {
-        console.log('Connected');
+        console.log('Connect');
     }
 });
 module.exports = connection;

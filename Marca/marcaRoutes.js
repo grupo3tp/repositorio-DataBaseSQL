@@ -3,7 +3,7 @@ const dbContext = require("../database/dbContext");
 
 module.exports = function (router) {
     const marcaRepository = _marcaRepository(dbContext);
-    router.route('/marca')
+router.route('/marca')
     .get(marcaRepository.getAll)
     .post(marcaRepository.post);
 

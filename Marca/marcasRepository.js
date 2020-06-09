@@ -36,16 +36,16 @@ var TYPES = require('tedious').TYPES;
             });
         }
     
-        function _delete(req, res) {
+        function _delete(req, res) {    
     
                      var parameters = [];
             
                      if (req.data.id_Marca) {
                          var parameters = [];
             
-                         parameters.push({ name: 'Id', type: TYPES.Int, val: req.data.id_Marca });
+                         parameters.push({ name: 'Id_Marca', type: TYPES.Int, val: req.data.id_Marca });
             
-                         var query = "delete from Marca where id_Marca = @Id"
+                         var query = "delete from Marca where id_Marca = @Id_Marca"
             
                          dbContext.getQuery(query, parameters, false, function (error, data, rowCount) {
                              if (rowCount > 0) {

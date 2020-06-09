@@ -2,8 +2,11 @@ var response = require("../shared/response");
 const jwt = require('jsonwebtoken');
 const JWT_Secret = "987654"
 var TYPES = require('tedious').TYPES;
-var testUser = { usuario: 'p', password: '1'};
-
+var loginModel = require("./loginModels")
+var esIgual = false;
+var testUser = new Array(loginModel)
+ testUser.push({Usuario:'gus',Pass:'123'},{Usuario:'yo',Pass:'123'})
+ 
 
  function loginRepository(dbContext) {
 
@@ -14,22 +17,33 @@ var testUser = { usuario: 'p', password: '1'};
 
             var parameters = [];
            
-            dbContext.getQuery("select * from Usuarios", parameters, false, function (error, data){
-                  
-              });
-         
-            if (req.body.Usuario===testUser.usuario && req.body.Pass === testUser.password ) {
-              var token = jwt.sign(user, JWT_Secret);
-              res.status(200).send({
-                signed_user: user,
-                token:token 
+            dbContext.getQuery("select Usuario,Pass from Usuarios", parameters, false, function (error, data){
+              
+               //return testUser.push({Usuario: data.Usuario, Pass:data.Pass})    
+            });
+           
+              testUser.forEach(testUser => {
 
+                if (req.body.Usuario===testUser.Usuario && req.body.Pass === testUser.Pass ){
+                esIgual = true;        
+                }
+                
               });
-            } else {
-              res.status(403).send({
-                errorMessage: 'requiere autorizacion!'
-              });
-            }
+              if (esIgual === true) {
+                var token = jwt.sign(user, JWT_Secret);
+                esIgual = false;
+                res.status(200).send({
+                  signed_user: user,
+                  token:token,
+                 
+  
+                });
+              } else {
+                res.status(403).send({
+                  errorMessage: 'requiere autorizacion!'
+                });
+              }
+            
         } else { 
         res.status(403).send({
           errorMessage: 'Por favor ingrese un Usuario y Contraseña'
