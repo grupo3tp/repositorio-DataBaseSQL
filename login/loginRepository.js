@@ -1,57 +1,75 @@
-var response = require("../shared/response");
 const jwt = require('jsonwebtoken');
 const JWT_Secret = "987654"
-var TYPES = require('tedious').TYPES;
-var loginModel = require("./loginModels")
-var esIgual = false;
-var testUser = new Array(loginModel)
- testUser.push({Usuario:'gus',Pass:'123'},{Usuario:'yo',Pass:'123'})
- 
+const sql = require('mssql');
 
  function loginRepository(dbContext) {
 
-    function getA(req, res) {
+      function post(req, res) {
 
-        if (req.body) {
-            var user = req.body;
+            if (req.body) {
+              let _userName = req.body.Usuario
+              let _userPassword = req.body.Pass
 
-            var parameters = [];
-           
-            dbContext.getQuery("select Usuario,Pass from Usuarios", parameters, false, function (error, data){
-              
-               //return testUser.push({Usuario: data.Usuario, Pass:data.Pass})    
-            });
-           
-              testUser.forEach(testUser => {
-
-                if (req.body.Usuario===testUser.Usuario && req.body.Pass === testUser.Pass ){
-                esIgual = true;        
+              let sqlConfig = {
+                user: 'gus',
+                password: '123456',
+                server: 'DESKTOP-M4CABEP',
+                database: 'patrimonio',
+                options: {
+                    encrypt: false                
                 }
-                
-              });
-              if (esIgual === true) {
-                var token = jwt.sign(user, JWT_Secret);
-                esIgual = false;
-                res.status(200).send({
-                  signed_user: user,
-                  token:token,
-                 
-  
-                });
-              } else {
-                res.status(403).send({
-                  errorMessage: 'requiere autorizacion!'
-                });
-              }
-            
-        } else { 
-        res.status(403).send({
-          errorMessage: 'Por favor ingrese un Usuario y Contraseña'
-        });
-        }
-     }
+            }
 
-    return {getA}
+              sql.connect(sqlConfig).then(function (pool) {
+       
+                let query = "EXEC Usuarioslogin '" + _userName + "'";
+                return pool.request().query(query).then(function (result) {
+        
+                    let _returnSql = result.recordset[0].RETURN;
+        
+                    if (_returnSql === 1) {
+                        sql.close();
+                          res.status(403).send({
+                            errorMessage: 'Usuario no existe'
+                          });
+                    } else {
+                        if (_userPassword == _returnSql) {                        
+                            sql.close();
+                            delete result.recordset[0].RETURN;
+
+                            var token = jwt.sign( _userName, JWT_Secret);   
+                            res.status(200).send({
+                              signed_user: _userName,
+                              token:token,
+                          
+                        })
+                        }
+                        else {
+                            sql.close();
+                              res.status(403).send({
+                                errorMessage: 'pusiste mal la pass gil!'
+                              });
+        
+                        }
+                    }
+                }).catch(function (err) {
+                    sql.close();
+                    res.status(403).send({
+                      errorMessage: 'Error en Base de datos'
+                    });
+
+                });
+            }).catch(function (errsql) {
+                sql.close();
+                res.status(403).send({
+                  errorMessage: 'Error en Base de datos'
+                });
+            })
+          }
+        }
+            
+                  
+    return {post}
 }
 
 module.exports = loginRepository;

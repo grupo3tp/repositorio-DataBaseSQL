@@ -3,6 +3,6 @@ const dbContext = require("../database/dbContext");
 
 module.exports = function (router) {
     const Repository = _loginRepository(dbContext);
-    router.route('/autentificacion').post(Repository.getA);
+    router.route('/autentificacion').post(Repository.post);
     
 }
