@@ -13,20 +13,12 @@ realice la descarga de los archivos en una carpeta de preferencia con la que lue
 
 instalaciones para su uso en VSCode
 
-en la terminal de VSCode instale el paquete express, body-parser,
-para instalar esos paquetes use el siguiente código:
+en la terminal de VSCode instale los paquetes necesarios con:
 
-npm install express
-npm install body-parser
+npm install 
 
-tambien requerimos un paquete para los controladores del servidor SQL para Nodejs:
+ejecute la aplicacion con:
 
-npm install tedious
-
-y los CORS para tener los permisos de acceso:
-
-npm install cors --save
-
-ejecute la aplicacion con node app.js
+node app.js
 
 
