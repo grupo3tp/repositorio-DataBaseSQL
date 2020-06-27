@@ -6,6 +6,8 @@ function eRoutes() {
     var login = require('./login/loginRoutes')(router);
     var sector = require('./sector/sectorRoutes')(router);
     var transporte = require('./transporte/transporteRoutes')(router);
+    var equipos = require('./equipo/equipoRoutes')(router);
+    var remito = require('./remito/remitoRoutes')(router);
     return router;
 }
 module.exports = eRoutes;
