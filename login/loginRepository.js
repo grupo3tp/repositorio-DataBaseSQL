@@ -16,7 +16,8 @@ const sql = require('mssql');
                 server: 'DESKTOP-M4CABEP',
                 database: 'patrimonio',
                 options: {
-                    encrypt: false                
+                    encrypt: false, 
+                    instanceName: 'SQLEXPRESS'               
                 }
             }
 
@@ -47,7 +48,7 @@ const sql = require('mssql');
                         else {
                             sql.close();
                               res.status(403).send({
-                                errorMessage: 'pusiste mal la pass gil!'
+                                errorMessage: 'Password Incorrecta!'
                               });
         
                         }
