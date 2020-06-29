@@ -8,6 +8,8 @@ function eRoutes() {
     var transporte = require('./transporte/transporteRoutes')(router);
     var equipos = require('./equipo/equipoRoutes')(router);
     var remito = require('./remito/remitoRoutes')(router);
+    var nuevaActa = require('./nuevaActa/nuevaActaRoutes')(router);
+    var NAM = require('./nuevaActaMovmientos/NAMRoutes')(router);
     return router;
 }
 module.exports = eRoutes;
