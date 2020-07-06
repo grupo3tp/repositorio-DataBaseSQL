@@ -13,6 +13,8 @@ realice la descarga de los archivos en una carpeta de preferencia con la que lue
 
 instalaciones para su uso en VSCode
 
+en dataBase/config  agregue los datos de su conxion a SqlServer
+
 en la terminal de VSCode instale los paquetes necesarios con:
 
 npm install 
