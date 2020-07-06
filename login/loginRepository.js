@@ -10,18 +10,19 @@ const sql = require('mssql');
               let _userName = req.body.Usuario
               let _userPassword = req.body.Pass
 
-              let sqlConfig = {
-                user: 'gus',
-                password: '123456',
-                server: 'DESKTOP-M4CABEP',
-                database: 'patrimonio',
-                options: {
-                    encrypt: false, 
-                    instanceName: 'SQLEXPRESS'               
-                }
-            }
+            //   let sqlConfig = {
+            //     user: 'gus',
+            //     password: '123456',
+            //     server: 'DESKTOP-M4CABEP',
+            //     database: 'patrimonio',
+            //     options: {
+            //         encrypt: false, 
+            //         instanceName: 'SQLEXPRESS'               
+            //     }
+            // }
+            var sqlConfig = require("../database/config")
 
-              sql.connect(sqlConfig).then(function (pool) {
+              sql.connect(sqlConfig.sqlConfig).then(function (pool) {
        
                 let query = "EXEC Usuarioslogin '" + _userName + "'";
                 return pool.request().query(query).then(function (result) {
