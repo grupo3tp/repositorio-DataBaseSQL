@@ -1,5 +1,5 @@
 
- function NAMRepository() {
+ function NAERepository() {
 
     function post(req, res) {
   
@@ -8,7 +8,7 @@
             var TYPES = require('tedious').TYPES;  
             var async = require('async');
             var config = require("../database/config")
-          
+      
              var connection = new Connection(config.config);  
 
             // conexion a la base
@@ -26,31 +26,17 @@
                         },
                         
                         function Insert(callback){
-                           
-
-                                request = new Request("INSERT INTO [dbo].[Movimientos] ([id_Remito],[nSerie],[cantidad]) VALUES (@idRemito, @serialElegido, @cantidad)", function(err){  
+                            request = new Request("UPDATE [dbo].[Equipos]  set  id_Sec =  @id_Sec  where serial = @serialElegido", function(err){  
                                 if (err) {
                                         console.log(err);
                                     }  
                                 }
-                            );  
-                            
-                            request.addParameter('idRemito', TYPES.Int, req.body.idRemito);
+                            );
+
                             request.addParameter('serialElegido', TYPES.VarChar, req.body.serialElegido);  
-                            request.addParameter('cantidad', TYPES.Int, req.body.cantidad); 
-                            request.addParameter('id_Sec', TYPES.Int, req.body.Para); 
+                            request.addParameter('id_Sec', TYPES.Int, req.body.Para);
 
-                            // request.on('row', function(columns) {  
-                            //     columns.forEach(function(column) {  
-                            //     if (column.value === null) {  
-                            //         console.log('NULL');  
-                            //     } else {  
-                            //         console.log( column.value);  
-                            //     }  
-                            //     });  
-                            // }); 
-
-                            // comprobar cantidad de filas insertadas
+                         
                             request.on('doneInProc', function(rowCount, more) {  
                                 //console.log(rowCount + ' fila insertada');  
                                 callback(null);
@@ -91,5 +77,5 @@
     return {post: post}
     }
 
-module.exports = NAMRepository;
+module.exports = NAERepository;
 
