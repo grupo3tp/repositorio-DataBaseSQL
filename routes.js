@@ -1,4 +1,5 @@
 const express = require('express');
+const { request } = require('express');
 function eRoutes() {
     const router = express.Router();
     var articulos = require('./articulos/articulosRoutes')(router);
@@ -10,6 +11,8 @@ function eRoutes() {
     var remito = require('./remito/remitoRoutes')(router);
     var nuevaActa = require('./nuevaActa/nuevaActaRoutes')(router);
     var NAM = require('./nuevaActaMovmientos/NAMRoutes')(router);
+    var NAE = require('./nuevaActaEquipo/NAERoutes')(router);
+    var token = require('./loginToken/tokenRoutes')(router);
     return router;
 }
 module.exports = eRoutes;
