@@ -14,7 +14,7 @@ var TYPES = require('tedious').TYPES;
             parameters.push({ name: 'De', type: TYPES.Int, val: req.body.De });
             parameters.push({ name: 'Id_Transporte', type: TYPES.Int, val: req.body.Id_Transporte });
             parameters.push({ name: 'Observaciones', type: TYPES.VarChar, val: req.body.Observaciones });
-            
+            parameters.push({ name: 'token', type: TYPES.VarChar, val: req.body.token });
                 
             dbContext.post("InsertOrUpdateNuevaActaRemito", parameters, function (error, data) {
                 return res.json(response(data, error));

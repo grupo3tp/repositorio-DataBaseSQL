@@ -38,7 +38,6 @@
                             request.addParameter('idRemito', TYPES.Int, req.body.idRemito);
                             request.addParameter('serialElegido', TYPES.VarChar, req.body.serialElegido);  
                             request.addParameter('cantidad', TYPES.Int, req.body.cantidad); 
-                            request.addParameter('id_Sec', TYPES.Int, req.body.Para); 
 
                             // request.on('row', function(columns) {  
                             //     columns.forEach(function(column) {  
