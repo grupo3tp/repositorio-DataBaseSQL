@@ -2,20 +2,20 @@ var response = require("../shared/response");
 
 var TYPES = require('tedious').TYPES;
 
- function equipoRepository(dbContext) {
+ function tipoRepository(dbContext) {
 
     function getA(req, res) {
         var parameters = [];
     
-        dbContext.getQuery("select serial, id_Art from Equipos", parameters, false, function (error, data){
+        dbContext.getQuery("select * from Segmento", parameters, false, function (error, data){
                     return res.json(response(data, error));
                 });
     }
     function get(req, res, next) {
-           if (req.params.equipoId) {
+           if (req.params.tipoId) {
                 var parameters = [];
-                    parameters.push({ name: 'serial', type: TYPES.Int, val: req.params.equipoId });
-                    var query = "select * from Equipos where serial = @serial"
+                    parameters.push({ name: 'id_Segmento', type: TYPES.Int, val: req.params.tipoId });
+                    var query = "select * from Segmento where id_Segmento = @id_Segmento"
                     dbContext.getQuery(query, parameters, false, function (error, data) {
                     if (data) {
                         res.json(response(data, error));
@@ -28,18 +28,9 @@ var TYPES = require('tedious').TYPES;
         } 
     function post(req, res) {
     var parameters = [];
-            parameters.push({ name: 'id_Art', type: TYPES.VarChar, val: req.body.id_Art });
-            parameters.push({ name: 'id_Estado', type: TYPES.VarChar, val: req.body.id_Estado });
-            parameters.push({ name: 'nInventario', type: TYPES.VarChar, val: req.body.nInventario });
-            parameters.push({ name: 'Remito_Factura', type: TYPES.VarChar, val: req.body.Remito_Factura });
-            parameters.push({ name: 'id_OC', type: TYPES.VarChar, val: req.body.id_OC });
-            parameters.push({ name: 'Obvs', type: TYPES.VarChar, val: req.body.Obvs });
-            parameters.push({ name: 'id_Sec', type: TYPES.VarChar, val: req.body.id_Sec });
-            parameters.push({ name: 'NoSerial', type: TYPES.VarChar, val: req.body.NoSerial });
-            parameters.push({ name: 'FechaAlta', type: TYPES.VarChar, val: req.body.FechaAlta });
-            parameters.push({ name: 'Cantidad', type: TYPES.VarChar, val: req.body.Cantidad });
+            parameters.push({ name: 'Detalle', type: TYPES.VarChar, val: req.body.Detalle });
           
-            dbContext.post("InsertOrUpdateEquipo", parameters, function (error, data) {
+            dbContext.post("InsertOrUpdateTipo", parameters, function (error, data) {
                 return res.json(response(data, error));
     
             });
@@ -49,16 +40,16 @@ var TYPES = require('tedious').TYPES;
     
                      var parameters = [];
             
-                     if (req.data.serial) {
+                     if (req.data.id_Segmento) {
                          var parameters = [];
             
-                         parameters.push({ name: 'serial', type: TYPES.Int, val: req.data.id_equipo });
+                         parameters.push({ name: 'id_Segmento', type: TYPES.Int, val: req.data.id_Segmento });
             
-                         var query = "delete from equipo where serial = @serial"
+                         var query = "delete from Segmento where id_Segmento = @id_Segmento"
             
                          dbContext.getQuery(query, parameters, false, function (error, data, rowCount) {
                              if (rowCount > 0) {
-                                 return res.json('el equipo a sido borrado');
+                                 return res.json('el tipo a sido borrado');
                              }
                              return res.sendStatus(404);
                          });
@@ -89,19 +80,19 @@ var TYPES = require('tedious').TYPES;
                  }
              });
     
-             dbContext.post("InsertOrUpdateEquipo", parameters, function (error, data) {
+             dbContext.post("InsertOrUpdateTipo", parameters, function (error, data) {
                  return res.json(response(data, error));
              });
          }
     
      function find(req, res, next) {
     
-        if (req.params.equipoId) {
+        if (req.params.tipoId) {
             var parameters = [];
     
-             parameters.push({ name: 'serial', type: TYPES.Int, val: req.params.equipoId });
+             parameters.push({ name: 'id_Segmento', type: TYPES.Int, val: req.params.tipoId });
     
-             var query = "select * from equipo where serial = @serial"
+             var query = "select * from Segmento where id_Segmento = @id_Segmento"
     
            dbContext.getQuery(query, parameters, false, function (error, data) {
               if (data) {
@@ -124,5 +115,5 @@ var TYPES = require('tedious').TYPES;
         }
     }
 
-module.exports = equipoRepository;
+module.exports = tipoRepository;
 
