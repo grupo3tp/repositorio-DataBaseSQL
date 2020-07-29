@@ -13,6 +13,7 @@ function eRoutes() {
     var NAM = require('./nuevaActaMovmientos/NAMRoutes')(router);
     var NAE = require('./nuevaActaEquipo/NAERoutes')(router);
     var token = require('./loginToken/tokenRoutes')(router);
+    var tipo = require('./Tipo/tipoRoutes')(router);
     return router;
 }
 module.exports = eRoutes;
