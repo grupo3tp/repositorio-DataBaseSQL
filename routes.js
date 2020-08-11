@@ -14,6 +14,10 @@ function eRoutes() {
     var NAE = require('./nuevaActaEquipo/NAERoutes')(router);
     var token = require('./loginToken/tokenRoutes')(router);
     var tipo = require('./Tipo/tipoRoutes')(router);
+    var ordenCompra = require("./OrdenDecompra/ordenCompraRoutes")(router);
+    var estado = require("./estado/estadoRoutes")(router);
+    var historial = require("./historial/historialRoutes")(router);
+    var histoActa = require("./historial/histoActaRoutes")(router);
     return router;
 }
 module.exports = eRoutes;
