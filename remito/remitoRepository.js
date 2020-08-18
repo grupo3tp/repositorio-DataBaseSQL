@@ -15,7 +15,7 @@ var TYPES = require('tedious').TYPES;
            if (req.params.remitoId) {
                 var parameters = [];
                     parameters.push({ name: 'id_Remito', type: TYPES.Int, val: req.params.remitoId });
-                    var query = "select se.Detalle as Para, Fecha, Contacto, s.Detalle as De, Observaciones, t.Transporta, m.nSerie, a.Detalle from Remito r inner join Transporte t on r.Id_Transporte = t.Id_Transporte inner join Movimientos m on r.id_Remito = m.id_Remito  inner join Equipos e on m.nSerie = e.serial inner join Articulos a on e.id_Art = a.id_Art inner join Sector s on s.id_Sec = r.De inner join Sector se on se.id_Sec = r.Para where r.id_Remito =  @id_Remito"
+                    var query = "select se.Detalle as Para, Fecha, Contacto, s.Detalle as De, Observaciones,e.nInventario, t.Transporta, m.nSerie, a.Detalle from Remito r inner join Transporte t on r.Id_Transporte = t.Id_Transporte inner join Movimientos m on r.id_Remito = m.id_Remito  inner join Equipos e on m.nSerie = e.serial inner join Articulos a on e.id_Art = a.id_Art inner join Sector s on s.id_Sec = r.De inner join Sector se on se.id_Sec = r.Para where r.id_Remito =  @id_Remito"
                     dbContext.getQuery(query, parameters, false, function (error, data) {
                     if (data) {
                         res.json(response(data, error));
