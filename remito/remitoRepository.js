@@ -15,7 +15,8 @@ var TYPES = require('tedious').TYPES;
            if (req.params.remitoId) {
                 var parameters = [];
                     parameters.push({ name: 'id_Remito', type: TYPES.Int, val: req.params.remitoId });
-                    var query = "select se.Detalle as Para, Fecha, Contacto, s.Detalle as De, Observaciones,e.nInventario, t.Transporta, m.nSerie, a.Detalle from Remito r inner join Transporte t on r.Id_Transporte = t.Id_Transporte inner join Movimientos m on r.id_Remito = m.id_Remito  inner join Equipos e on m.nSerie = e.serial inner join Articulos a on e.id_Art = a.id_Art inner join Sector s on s.id_Sec = r.De inner join Sector se on se.id_Sec = r.Para where r.id_Remito =  @id_Remito"
+                    //var query = "select se.Detalle as Para, Fecha, Contacto, s.Detalle as De, Observaciones,e.nInventario, t.Transporta, m.nSerie, a.Detalle from Remito r inner join Transporte t on r.Id_Transporte = t.Id_Transporte inner join Movimientos m on r.id_Remito = m.id_Remito  inner join Equipos e on m.nSerie = e.serial inner join Articulos a on e.id_Art = a.id_Art inner join Sector s on s.id_Sec = r.De inner join Sector se on se.id_Sec = r.Para where r.id_Remito =  @id_Remito"
+                      var query = "select se.Detalle as Para, Fecha, Contacto, s.Detalle as De, Observaciones,e.nInventario,e.Cantidad, u.Direccion, u.Localidad,  d.Provincia, t.Transporta, m.nSerie, a.Detalle, b.Detalle as Marcas from Remito r   inner join Transporte t on r.Id_Transporte = t.Id_Transporte inner join Movimientos m on r.id_Remito = m.id_Remito  inner join Equipos e on m.nSerie = e.serial inner join Articulos a on e.id_Art = a.id_Art inner join Sector s on s.id_Sec = r.De inner join Sector se on se.id_Sec = r.Para inner join Marca b on b.id_Marca = a.id_Marca inner join UbicacionEdificio u on u.Id_Ubicacion = se.Id_Ubicacion inner join Distritos d on d.id_Prov = u.id_Prov where r.id_Remito =  @id_Remito"
                     dbContext.getQuery(query, parameters, false, function (error, data) {
                     if (data) {
                         res.json(response(data, error));
@@ -37,7 +38,6 @@ var TYPES = require('tedious').TYPES;
             parameters.push({ name: 'CantKits', type: TYPES.Int, val: req.body.CantKits });
             parameters.push({ name: 'Observaciones', type: TYPES.VarChar, val: req.body.Observaciones });
             parameters.push({ name: 'Id_Usuario', type: TYPES.Int, val: req.body.Id_Usuario });
-
           
             dbContext.post("InsertOrUpdateRemito", parameters, function (error, data) {
                 return res.json(response(data, error));
