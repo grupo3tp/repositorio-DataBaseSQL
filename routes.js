@@ -18,6 +18,7 @@ function eRoutes() {
     var estado = require("./estado/estadoRoutes")(router);
     var historial = require("./historial/historialRoutes")(router);
     var histoActa = require("./historial/histoActaRoutes")(router);
+    var cargaGranel = require("./cargaGranel/cargaGranelRoutes")(router);
     return router;
 }
 module.exports = eRoutes;
