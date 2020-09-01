@@ -2,20 +2,20 @@ var response = require("../shared/response");
 
 var TYPES = require('tedious').TYPES;
 
- function sectorRepository(dbContext) {
+ function ubicacionEdifRepository(dbContext) {
 
     function getA(req, res) {
         var parameters = [];
     
-        dbContext.getQuery("select * from Sector", parameters, false, function (error, data){
+        dbContext.getQuery("select * from UbicacionEdificio", parameters, false, function (error, data){
                     return res.json(response(data, error));
                 });
     }
     function get(req, res, next) {
-           if (req.params.sectorId) {
+           if (req.params.ubicacionEdifId) {
                 var parameters = [];
-                    parameters.push({ name: 'id_sector', type: TYPES.Int, val: req.params.sectorId });
-                    var query = "select * from Sector where id_sec = @id_sector"
+                    parameters.push({ name: 'Id_Ubicacion', type: TYPES.Int, val: req.params.ubicacionEdifId });
+                    var query = "select * from UbicacionEdificio where Id_Ubicacion = @Id_Ubicacion"
                     dbContext.getQuery(query, parameters, false, function (error, data) {
                     if (data) {
                         res.json(response(data, error));
@@ -29,15 +29,8 @@ var TYPES = require('tedious').TYPES;
     function post(req, res) {
     var parameters = [];
             parameters.push({ name: 'Detalle', type: TYPES.VarChar, val: req.body.Detalle });
-            parameters.push({ name: 'telefonos', type: TYPES.VarChar, val: req.body.telefonos });
-            parameters.push({ name: 'id_TipoSector', type: TYPES.Int, val: req.body.id_TipoSector });
-            parameters.push({ name: 'id_Dir', type: TYPES.Int, val: req.body.id_Dir });
-            parameters.push({ name: 'StockPropio', type: TYPES.Bit, val: req.body.StockPropio});
-            parameters.push({ name: 'Activo', type: TYPES.Bit, val: req.body.Activo });
-            parameters.push({ name: 'PersonalPropio', type: TYPES.Bit, val: req.body.PersonalPropio });
-            parameters.push({ name: 'Id_Ubicacion', type: TYPES.Int, val: req.body.Id_Ubicacion });
           
-            dbContext.post("InsertOrUpdateSector", parameters, function (error, data) {
+            dbContext.post("InsertOrUpdateUbicacionEdif", parameters, function (error, data) {
                 return res.json(response(data, error));
     
             });
@@ -47,16 +40,16 @@ var TYPES = require('tedious').TYPES;
     
                      var parameters = [];
             
-                     if (req.data.id_sector) {
+                     if (req.data.id_ubicacionEdif) {
                          var parameters = [];
             
-                         parameters.push({ name: 'Id_sector', type: TYPES.Int, val: req.data.id_sector });
+                         parameters.push({ name: 'Id_ubicacionEdif', type: TYPES.Int, val: req.data.id_ubicacionEdif });
             
-                         var query = "delete from Sector where id_sec = @Id_sector"
+                         var query = "delete from UbicacionEdificio where Id_Ubicacion = @Id_Ubicacion"
             
                          dbContext.getQuery(query, parameters, false, function (error, data, rowCount) {
                              if (rowCount > 0) {
-                                 return res.json('el sector a sido borrado');
+                                 return res.json('la ubicacionEdif a sido borrada');
                              }
                              return res.sendStatus(404);
                          });
@@ -87,19 +80,19 @@ var TYPES = require('tedious').TYPES;
                  }
              });
     
-             dbContext.post("InsertOrUpdateSector", parameters, function (error, data) {
+             dbContext.post("InsertOrUpdateubicacionEdif", parameters, function (error, data) {
                  return res.json(response(data, error));
              });
          }
     
      function find(req, res, next) {
     
-        if (req.params.sectorId) {
+        if (req.params.ubicacionEdifId) {
             var parameters = [];
     
-             parameters.push({ name: 'id_sector', type: TYPES.Int, val: req.params.sectorId });
+             parameters.push({ name: 'Id_Ubicacion', type: TYPES.Int, val: req.params.ubicacionEdifId });
     
-             var query = "select * from Sector where id_sec = @id_sector"
+             var query = "select * from UbicacionEdificio where Id_Ubicacion = @Id_Ubicacion"
     
            dbContext.getQuery(query, parameters, false, function (error, data) {
               if (data) {
@@ -122,5 +115,5 @@ var TYPES = require('tedious').TYPES;
         }
     }
 
-module.exports = sectorRepository;
+module.exports = ubicacionEdifRepository;
 

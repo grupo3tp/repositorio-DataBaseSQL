@@ -19,6 +19,9 @@ function eRoutes() {
     var historial = require("./historial/historialRoutes")(router);
     var histoActa = require("./historial/histoActaRoutes")(router);
     var cargaGranel = require("./cargaGranel/cargaGranelRoutes")(router);
+    var tipoPuesto = require("./tipoPuesto/tipoPuestoRoutes")(router);
+    var gerencia = require("./gerencia/gerenciaRoutes")(router);
+    var UbicacionEdif = require("./ubicacionEdif/ubicacionEdifRoutes")(router);
     return router;
 }
 module.exports = eRoutes;

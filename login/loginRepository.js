@@ -27,7 +27,7 @@ const sql = require('mssql');
                     if (_returnSql === 1) {
                         sql.close();
                           res.status(403).send({
-                            errorMessage: 'Usuario no existe'
+                            errorMessage: 'Usuario o contraseña incorrecta'
                           });
                     } else {
                         if (_userPassword == _returnSql) {                        
@@ -43,7 +43,7 @@ const sql = require('mssql');
                         else {
                             sql.close();
                               res.status(403).send({
-                                errorMessage: 'Password Incorrecta!'
+                                errorMessage: 'Usuario o contraseña incorrecta'
                               });
         
                         }
