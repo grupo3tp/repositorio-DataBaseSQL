@@ -14,15 +14,16 @@ var TYPES = require('tedious').TYPES;
     function get(req, res, next) {
            if (req.params.equipoId) {
                 var parameters = [];
-                    parameters.push({ name: 'serial', type: TYPES.Int, val: req.params.equipoId });
-                    var query = "select * from Equipos where serial = @serial"
+                    parameters.push({ name: 'id_Sec', type: TYPES.Int, val: req.params.equipoId });
+                   
+                    var query = "select * from Equipos where id_Sec = @id_Sec"
                     dbContext.getQuery(query, parameters, false, function (error, data) {
                     if (data) {
                         res.json(response(data, error));
                         req.data = data[0];
                            return next();
                     }
-                    return res.sendStatus(404);
+                   return res.sendStatus(404);
                 });
             } 
         } 
@@ -98,10 +99,10 @@ var TYPES = require('tedious').TYPES;
     
         if (req.params.equipoId) {
             var parameters = [];
+           
+             parameters.push({ name: 'id_Sec', type: TYPES.Int, val: req.params.equipoId });
     
-             parameters.push({ name: 'serial', type: TYPES.Int, val: req.params.equipoId });
-    
-             var query = "select * from equipo where serial = @serial"
+             var query = "select * from Equipos where id_Sec = @id_Sec"
     
            dbContext.getQuery(query, parameters, false, function (error, data) {
               if (data) {
