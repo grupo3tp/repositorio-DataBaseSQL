@@ -7,7 +7,7 @@ var TYPES = require('tedious').TYPES;
     function getA(req, res) {
         var parameters = [];
     
-        dbContext.getQuery("select * from Usuarios", parameters, false, function (error, data){
+        dbContext.getQuery("select * from Usuarios u inner join Usuario_Nivel un on u.Nivel_Seguridad  = un.Id_Nivel", parameters, false, function (error, data){
                     return res.json(response(data, error));
                 });
     }
