@@ -32,6 +32,7 @@ var TYPES = require('tedious').TYPES;
             parameters.push({ name: 'Usuario', type: TYPES.VarChar, val: req.body.Usuario });
             parameters.push({ name: 'Pass', type: TYPES.VarChar, val: req.body.Pass });
             parameters.push({ name: 'Nivel_Seguridad', type: TYPES.Int, val: req.body.Nivel_Seguridad });
+            parameters.push({ name: 'Activo', type: TYPES.Int, val: req.body.Activo });
           
             dbContext.post("InsertOrUpdateUsuarios", parameters, function (error, data) {
                 return res.json(response(data, error));
