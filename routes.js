@@ -23,6 +23,7 @@ function eRoutes() {
     var gerencia = require("./gerencia/gerenciaRoutes")(router);
     var UbicacionEdif = require("./ubicacionEdif/ubicacionEdifRoutes")(router);
     var usuario = require("./usuarios/usuariosRoutes")(router);
+    var ActivarDesactivar = require("./ActivarDesactivarUsuario/ActivarDesactivarUsuarioRoutes")(router);
     return router;
 }
 module.exports = eRoutes;
