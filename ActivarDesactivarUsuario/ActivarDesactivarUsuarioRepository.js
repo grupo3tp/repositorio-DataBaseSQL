@@ -26,7 +26,7 @@
                         },
                         
                         function Insert(callback){
-                            request = new Request("UPDATE [dbo].[Usuarios] set Activo = @Activo where id_Usuario = @Id_Usuario", function(err){  
+                            request = new Request("UPDATE [dbo].[Usuarios] set Activo = @Activo where Id_Usuario = @Id_Usuario", function(err){  
                                 if (err) {
                                         console.log(err);
                                     }  
