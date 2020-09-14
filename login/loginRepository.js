@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const JWT_Secret = "987654"
 const sql = require('mssql');
+var crypto = require("crypto")
 
  function loginRepository() {
 
@@ -9,6 +10,7 @@ const sql = require('mssql');
             if (req.body) {
               let _userName = req.body.Usuario
               let _userPassword = req.body.Pass
+              var hash =  crypto.createHash('md5').update(_userPassword).digest('hex')
               var payload = {
                 iat: (new Date().getTime() / 1000),
                 _userName
@@ -30,7 +32,7 @@ const sql = require('mssql');
                             errorMessage: 'Usuario o contraseña incorrecta'
                           });
                     } else {
-                        if (_userPassword == _returnSql) {                        
+                        if (hash == _returnSql) {                        
                             sql.close();
                             delete result.recordset[0].RETURN;
 
