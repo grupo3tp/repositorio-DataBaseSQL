@@ -36,7 +36,7 @@
                             request.addParameter('Activo', TYPES.Int, req.body.Activo);  
                             request.addParameter('Id_Usuario', TYPES.Int, req.body.Id_Usuario);
 
-                         console.log(req.body.Activo, req.body.Id_Usuario)
+                        // console.log(req.body.Activo, req.body.Id_Usuario)
                             request.on('doneInProc', function(rowCount, more) {  
                                 //console.log(rowCount + ' fila insertada');  
                                 callback(null);

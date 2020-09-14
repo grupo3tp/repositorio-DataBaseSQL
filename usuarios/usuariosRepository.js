@@ -1,4 +1,5 @@
 var response = require("../shared/response");
+var crypto = require("crypto")
 
 var TYPES = require('tedious').TYPES;
 
@@ -28,9 +29,11 @@ var TYPES = require('tedious').TYPES;
         } 
     function post(req, res) {
     var parameters = [];
+            var pass = req.body.Pass
+            var hash =  crypto.createHash('md5').update(pass).digest('hex')
             parameters.push({ name: 'Nombre_Usuario', type: TYPES.VarChar, val: req.body.Nombre_Usuario });
             parameters.push({ name: 'Usuario', type: TYPES.VarChar, val: req.body.Usuario });
-            parameters.push({ name: 'Pass', type: TYPES.VarChar, val: req.body.Pass });
+            parameters.push({ name: 'Pass', type: TYPES.VarChar, val: hash });
             parameters.push({ name: 'Nivel_Seguridad', type: TYPES.Int, val: req.body.Nivel_Seguridad });
             parameters.push({ name: 'Activo', type: TYPES.Int, val: req.body.Activo });
           
