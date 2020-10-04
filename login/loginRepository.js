@@ -25,6 +25,7 @@ var crypto = require("crypto")
                 return pool.request().query(query).then(function (result) {
         
                     let _returnSql = result.recordset[0].RETURN;
+                    let _nivel = result.recordset[0].NIVEL;
         
                     if (_returnSql === 1) {
                         sql.close();
@@ -39,7 +40,8 @@ var crypto = require("crypto")
                             
                             res.status(200).send({
                               signed_user: _userName,
-                              token:token,   
+                              token:token,  
+                              nivel:_nivel 
                         })
                         }
                         else {
