@@ -24,6 +24,7 @@ function eRoutes() {
     var UbicacionEdif = require("./ubicacionEdif/ubicacionEdifRoutes")(router);
     var usuario = require("./usuarios/usuariosRoutes")(router);
     var ActivarDesactivar = require("./ActivarDesactivarUsuario/ActivarDesactivarUsuarioRoutes")(router);
+    var updatePass = require("./actualizacionContraseña/updatePassRoutes")(router);
     return router;
 }
 module.exports = eRoutes;
