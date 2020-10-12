@@ -15,7 +15,7 @@ var TYPES = require('tedious').TYPES;
            if (req.params.sectorId) {
                 var parameters = [];
                     parameters.push({ name: 'id_Sec', type: TYPES.Int, val: req.params.sectorId });
-                    var query = "SELECT u.Id_Ubicacion,u.Ubicacion,e.id_Sec,s.Detalle as Sector,seg.Detalle as Tipo, a.Detalle as Articulo, e.serial,  e.nInventario, e.Cantidad, e.id_Estado FROM Equipos e inner join Sector s on e.id_Sec = s.id_Sec  inner join UbicacionEdificio u on s.Id_Ubicacion = u.Id_Ubicacion inner join Articulos a on e.id_Art = a.id_Art inner join Segmento seg on a.id_Segmento = seg.id_Segmento where u.Id_Ubicacion= @id_Sec order by u.Id_Ubicacion asc , e.id_Sec asc, seg.Detalle asc, a.Detalle asc ,e.serial"
+                    var query = "SELECT u.Id_Ubicacion,u.Ubicacion,e.id_Sec,s.Detalle as Sector,seg.Detalle as Tipo, a.Detalle as Articulo, e.serial,  e.nInventario, e.Cantidad, e.id_Estado FROM Equipos e inner join Sector s on e.id_Sec = s.id_Sec  inner join UbicacionEdificio u on s.Id_Ubicacion = u.Id_Ubicacion inner join Articulos a on e.id_Art = a.id_Art inner join Segmento seg on a.id_Segmento = seg.id_Segmento where e.id_Sec= @id_Sec order by u.Id_Ubicacion asc , e.id_Sec asc, seg.Detalle asc, a.Detalle asc ,e.serial"
                     dbContext.getQuery(query, parameters, false, function (error, data) {
                     if (data) {
                         res.json(response(data, error));
