@@ -1,4 +1,4 @@
-var Connection = require('tedious').Connection;
+var Connection = require('tedious').connect;
 var config = require("./config")
 
 var connection = new Connection(config.config);

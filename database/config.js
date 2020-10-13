@@ -11,7 +11,8 @@ var config = {
         database: 'patrimonio',
         instanceName: 'SQLEXPRESS',
         rowCollectionOnDone: true,
-        useColumnNames: false
+        useColumnNames: false,
+        trustServerCertificate : true
     }
 }
 
