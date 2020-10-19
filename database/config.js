@@ -1,29 +1,30 @@
 var config = {
-    server: 'LAPTOPLUIS', 
+    server: 'patrimonio.mssql.somee.com', 
     authentication: {
         type: 'default',
         options: {
-            userName: 'sa',
-            password: 'chinchu'
+            userName: 'gusalv_SQLLogin_1',
+            password: 's1562othiw'
         }
     },
     options: {
         database: 'patrimonio',
-        instanceName: 'SQLEXPRESS',
+        //instanceName: 'SQLEXPRESS',
         rowCollectionOnDone: true,
         useColumnNames: false,
         trustServerCertificate : true
     }
 }
 
+
  var sqlConfig = {
-    user: 'sa',
-    password: 'chinchu',
-    server: 'LAPTOPLUIS',
+    user: 'gusalv_SQLLogin_1',
+    password: 's1562othiw',
+    server: 'patrimonio.mssql.somee.com',
     database: 'patrimonio',
     options: {
         encrypt: false, 
-        instanceName: 'SQLEXPRESS'               
+        //instanceName: 'SQLEXPRESS'               
     }
 }
 exports.config = config;
