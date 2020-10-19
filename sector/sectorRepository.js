@@ -7,7 +7,7 @@ var TYPES = require('tedious').TYPES;
     function getA(req, res) {
         var parameters = [];
     
-        dbContext.getQuery("select * from Sector", parameters, false, function (error, data){
+        dbContext.getQuery("select * from Sector  order by Detalle asc", parameters, false, function (error, data){
                     return res.json(response(data, error));
                 });
     }

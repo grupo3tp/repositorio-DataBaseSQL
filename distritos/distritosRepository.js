@@ -2,20 +2,20 @@ var response = require("../shared/response");
 
 var TYPES = require('tedious').TYPES;
 
- function articulosRepository(dbContext) {
+ function distritosRepository(dbContext) {
 
     function getA(req, res) {
         var parameters = [];
     
-        dbContext.getQuery("select * from Articulos  order by Detalle asc", parameters, false, function (error, data){
+        dbContext.getQuery("select * from Distritos", parameters, false, function (error, data){
                     return res.json(response(data, error));
                 });
     }
     function get(req, res, next) {
-           if (req.params.articulosId) {
+           if (req.params.distritosId) {
                 var parameters = [];
-                    parameters.push({ name: 'id_Art', type: TYPES.Int, val: req.params.articulosId });
-                    var query = "select * from Articulos where id_Art = @id_Art"
+                    parameters.push({ name: 'id_Prov', type: TYPES.Int, val: req.params.distritosId });
+                    var query = "select * from Distritos where id_Prov = @id_Prov"
                     dbContext.getQuery(query, parameters, false, function (error, data) {
                     if (data) {
                         res.json(response(data, error));
@@ -28,11 +28,9 @@ var TYPES = require('tedious').TYPES;
         } 
     function post(req, res) {
     var parameters = [];
-            parameters.push({ name: 'Detalle', type: TYPES.VarChar, val: req.body.Detalle });
-            parameters.push({ name: 'id_Marca', type: TYPES.Int, val: req.body.id_Marca });
-            parameters.push({ name: 'id_Segmento', type: TYPES.Int, val: req.body.id_Segmento });
+            parameters.push({ name: 'Provincia', type: TYPES.VarChar, val: req.body.Detalle });
           
-            dbContext.post("InsertOrUpdateArticulos", parameters, function (error, data) {
+            dbContext.post("InsertOrUpdateDistritos", parameters, function (error, data) {
                 return res.json(response(data, error));
     
             });
@@ -42,16 +40,16 @@ var TYPES = require('tedious').TYPES;
     
                      var parameters = [];
             
-                     if (req.data.id_articulos) {
+                     if (req.data.id_distritos) {
                          var parameters = [];
             
-                         parameters.push({ name: 'Id_Art', type: TYPES.Int, val: req.data.id_articulos });
+                         parameters.push({ name: 'id_Prov', type: TYPES.Int, val: req.data.id_distritos });
             
-                         var query = "delete from Articulos where id_Art = @Id_Art"
+                         var query = "delete from Distritos where id_Prov = @id_Prov"
             
                          dbContext.getQuery(query, parameters, false, function (error, data, rowCount) {
                              if (rowCount > 0) {
-                                 return res.json('el articulos a sido borrado');
+                                 return res.json('la distritos a sido borrada');
                              }
                              return res.sendStatus(404);
                          });
@@ -82,19 +80,19 @@ var TYPES = require('tedious').TYPES;
                  }
              });
     
-             dbContext.post("InsertOrUpdateArticulos", parameters, function (error, data) {
+             dbContext.post("InsertOrUpdateDistritos", parameters, function (error, data) {
                  return res.json(response(data, error));
              });
          }
     
      function find(req, res, next) {
     
-        if (req.params.articulosId) {
+        if (req.params.distritosId) {
             var parameters = [];
     
-             parameters.push({ name: 'id_Art', type: TYPES.Int, val: req.params.articulosId });
+             parameters.push({ name: 'id_Prov', type: TYPES.Int, val: req.params.distritosId });
     
-             var query = "select * from Articulos where id_Art = @id_Art"
+             var query = "select * from Distritos where id_Prov = @id_Prov"
     
            dbContext.getQuery(query, parameters, false, function (error, data) {
               if (data) {
@@ -117,5 +115,5 @@ var TYPES = require('tedious').TYPES;
         }
     }
 
-module.exports = articulosRepository;
+module.exports = distritosRepository;
 

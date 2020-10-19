@@ -28,9 +28,14 @@ var TYPES = require('tedious').TYPES;
         } 
     function post(req, res) {
     var parameters = [];
-            parameters.push({ name: 'Detalle', type: TYPES.VarChar, val: req.body.Detalle });
+            parameters.push({ name: 'Ubicacion', type: TYPES.VarChar, val: req.body.Ubicacion });
+            parameters.push({ name: 'ControlaStock', type: TYPES.Bit, val: req.body.ControlaStock });
+            parameters.push({ name: 'Direccion', type: TYPES.Text, val: req.body.Direccion });
+            parameters.push({ name: 'Localidad', type: TYPES.VarChar, val: req.body.Localidad });
+            parameters.push({ name: 'id_Prov', type: TYPES.Int, val: req.body.id_Prov});
+            parameters.push({ name: 'CodigoPostal', type: TYPES.VarChar, val: req.body.CodigoPostal });
           
-            dbContext.post("InsertOrUpdateUbicacionEdif", parameters, function (error, data) {
+            dbContext.post("InsertOrUpdateUbicacionEdificio", parameters, function (error, data) {
                 return res.json(response(data, error));
     
             });
@@ -80,7 +85,7 @@ var TYPES = require('tedious').TYPES;
                  }
              });
     
-             dbContext.post("InsertOrUpdateubicacionEdif", parameters, function (error, data) {
+             dbContext.post("InsertOrUpdateUbicacionEdificio", parameters, function (error, data) {
                  return res.json(response(data, error));
              });
          }
