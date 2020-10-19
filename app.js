@@ -11,6 +11,10 @@ app.listen(port, () => {
     console.log("el puerto esta funcionando");
 });
 
+app.get('/', function(req, res) {
+    res.send('hello restApi de tcOrdenado');
+  });
+
 app.use(cors()); 
 
 app.use(function(req, res, next) { 
