@@ -16,6 +16,9 @@
   "scripts": {
    "start":"node app.js"
   },
+  "engines": {
+    "node": "6.11.0"
+    },
   "author": "Gustavo Alvarez",
   "license": "ISC"
 }
