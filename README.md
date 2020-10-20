@@ -1,6 +1,6 @@
 # repositorio-nodejs
 
-aqui se encuantra el backend API REST realizado en nodejs que conecta con la base de datos en SQL Server 
+Aqui se encuentra el back-end API REST realizado en nodejs que conecta con la base de datos en SQL Server 
 
 se requiere: {
  VSCode
