@@ -1,3 +1,4 @@
+'use strict';
 const jwt = require('jsonwebtoken');
 const JWT_Secret = "987654"
 const sql = require('mssql');
@@ -27,18 +28,21 @@ var crypto = require("crypto")
                     let _returnSql = result.recordset[0].RETURN;
                     let _nivel = result.recordset[0].NIVEL;
                     let _name = result.recordset[0].NAME;
+                    let _NIntento = result.recordset[0].NUMERO;
 
                     if (_returnSql === 1) {
                         sql.close();
                           res.status(403).send({
-                            errorMessage: 'Usuario o contraseña incorrecta'
+                            errorMessage: 'Usuario o contraseña incorrecta',
+                            errorPass: 0
                           });
                     } else {
-                        if (hash == _returnSql) {                        
+                        if (hash == _returnSql) {  
+                           
                             sql.close();
-                            delete result.recordset[0].RETURN;
 
-                            
+                           
+                            delete result.recordset[0].RETURN;
                             res.status(200).send({
                               signed_user: _userName,
                               token:token,  
@@ -47,13 +51,16 @@ var crypto = require("crypto")
                         })
                         }
                         else {
+                          
                             sql.close();
                               res.status(403).send({
-                                errorMessage: 'Usuario o contraseña incorrecta'
+                                errorMessage: 'Usuario o contraseña incorrecta',
+                                errorPass:_NIntento
                               });
         
                         }
                     }
+               
                    
                 }).catch(function (err) {
                     sql.close();
