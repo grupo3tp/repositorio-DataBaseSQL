@@ -17,9 +17,6 @@
                     console.log(err);
                 }  
                 else    {
-                   // console.log("Connected");
-
-                    // ejecutar las funciones del array
                     async.waterfall([
                         function Start(callback){
                             callback(null);

@@ -1,5 +1,5 @@
 
- function ActivarDesactivarUsuarioRepository() {
+ function intentoRepository() {
 
     function put(req, res) {
   
@@ -8,6 +8,7 @@
             var TYPES = require('tedious').TYPES;  
             var async = require('async');
             var config = require("../database/config")
+           
       
              var connection = new Connection(config.config);  
 
@@ -17,7 +18,7 @@
                     console.log(err);
                 }  
                 else    {
-                   
+                   // console.log("Connected");
 
                     // ejecutar las funciones del array
                     async.waterfall([
@@ -26,17 +27,16 @@
                         },
                         
                         function Insert(callback){
-                            request = new Request("UPDATE [dbo].[Usuarios] set Activo = @Activo where Usuario = @Usuario", function(err){  
+                            request = new Request("UPDATE [dbo].[Usuarios] set Intento = @Intento where Usuario = @Usuario", function(err){  
                                 if (err) {
                                         console.log(err);
                                     }  
                                 }
                             );
-
-                            request.addParameter('Activo', TYPES.Int, req.body.Activo);  
-                            request.addParameter('Usuario', TYPES.VarChar, req.body.Usuario);
-
-                        // console.log(req.body.Activo, req.body.Id_Usuario)
+                            request.addParameter('Usuario', TYPES.VarChar, req.body.Usuario);  
+                            request.addParameter('Intento', TYPES.Int, req.body.Intento);
+                           
+                         
                             request.on('doneInProc', function(rowCount, more) {  
                                 //console.log(rowCount + ' fila insertada');  
                                 callback(null);
@@ -77,5 +77,4 @@
     return {put: put}
     }
 
-module.exports = ActivarDesactivarUsuarioRepository;
-
+module.exports = intentoRepository;

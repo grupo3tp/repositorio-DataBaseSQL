@@ -5,7 +5,7 @@ var cors = require('cors');
 
 var app = express();
 
-var port =  3300
+var port = 3300
 
 app.listen(port, () => {
     console.log("el puerto esta funcionando");

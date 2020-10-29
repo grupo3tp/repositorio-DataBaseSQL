@@ -1,30 +1,32 @@
 var config = {
-    server: 'patrimonio.mssql.somee.com', 
+    server: 'DESKTOP-M4CABEP', 
     authentication: {
         type: 'default',
         options: {
-            userName: 'gusalv_SQLLogin_1',
-            password: 's1562othiw'
+            userName: 'gus',
+            password: '123456'
         }
     },
     options: {
         database: 'patrimonio',
-        //instanceName: 'SQLEXPRESS',
+        instanceName: 'SQLEXPRESS',
         rowCollectionOnDone: true,
         useColumnNames: false,
-        trustServerCertificate : true
+        trustServerCertificate : true,
+        enableArithAbort :true
     }
 }
 
 
  var sqlConfig = {
-    user: 'gusalv_SQLLogin_1',
-    password: 's1562othiw',
-    server: 'patrimonio.mssql.somee.com',
+    user: 'gus',
+    password: '123456',
+    server: 'DESKTOP-M4CABEP',
     database: 'patrimonio',
     options: {
         encrypt: false, 
-        //instanceName: 'SQLEXPRESS'               
+        instanceName: 'SQLEXPRESS',
+        enableArithAbort:true              
     }
 }
 exports.config = config;
