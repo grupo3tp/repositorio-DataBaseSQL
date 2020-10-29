@@ -1,3 +1,4 @@
+const { request } = require('express');
 const express = require('express');
 function eRoutes() {
     const router = express.Router();
@@ -25,6 +26,7 @@ function eRoutes() {
     var ActivarDesactivar = require("./ActivarDesactivarUsuario/ActivarDesactivarUsuarioRoutes")(router);
     var updatePass = require("./actualizacionContraseña/updatePassRoutes")(router);
     var distritos = require("./distritos/distritosRoutes")(router);
+    var intento = require("./intentos/intentoRoutes")(router);
     return router;
 }
 module.exports = eRoutes;
