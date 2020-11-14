@@ -1,10 +1,10 @@
 var config = {
-    server: 'LAPTOPLUIS', 
+    server: 'DESKTOP-M4CABEP', 
     authentication: {
         type: 'default',
         options: {
-            userName: 'sa',
-            password: 'chinchu'
+            userName: 'gus',
+            password: '123456'
         }
     },
     options: {
@@ -19,9 +19,9 @@ var config = {
 
 
  var sqlConfig = {
-    user: 'sa',
-    password: 'chinchu',
-    server: 'LAPTOPLUIS',
+    user: 'gus',
+    password: '123456',
+    server: 'DESKTOP-M4CABEP',
     database: 'patrimonio',
     options: {
         encrypt: false, 
