@@ -27,6 +27,8 @@ function eRoutes() {
     var updatePass = require("./actualizacionContraseña/updatePassRoutes")(router);
     var distritos = require("./distritos/distritosRoutes")(router);
     var intento = require("./intentos/intentoRoutes")(router);
+    var sectores = require("./sectores/sectoresRoutes")(router);
+    var artlist = require("./articulosListas/artListRoutes")(router);
     return router;
 }
 module.exports = eRoutes;
