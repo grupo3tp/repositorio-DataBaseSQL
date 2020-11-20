@@ -13,7 +13,7 @@ app.listen(port, () => {
 });
 
 app.get('/', function(req, res) {
-    res.send('hello restApi de tcOrdenado modif14/11');
+    res.send('hello restApi de tcOrdenado modif 19/11');
   });
 
 app.use(cors()); 

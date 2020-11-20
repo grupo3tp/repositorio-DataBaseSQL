@@ -29,6 +29,7 @@ function eRoutes() {
     var intento = require("./intentos/intentoRoutes")(router);
     var sectores = require("./sectores/sectoresRoutes")(router);
     var artlist = require("./articulosListas/artListRoutes")(router);
+    var delet = require("./eliminarToken/eliminarTokenRoutes")(router); 
     return router;
 }
 module.exports = eRoutes;
