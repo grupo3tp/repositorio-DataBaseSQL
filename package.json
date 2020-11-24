@@ -17,11 +17,8 @@
     "start": "node app.js"
   },
   "engines": {
-
     "node": "12.16.1"
     },
-
-
   "author": "Gustavo Alvarez",
   "license": "ISC"
 }
