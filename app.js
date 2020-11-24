@@ -5,14 +5,15 @@ var cors = require('cors');
 
 var app = express();
 
-var port = 3300
+var port =  process.env.PORT || 3300
+
 
 app.listen(port, () => {
     console.log("el puerto esta funcionando");
 });
 
 app.get('/', function(req, res) {
-    res.send('hello restApi de tcOrdenado');
+    res.send('hello restApi de tcOrdenado modif 19/11');
   });
 
 app.use(cors()); 
